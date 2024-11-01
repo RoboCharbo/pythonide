@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Python IDE with Pyodide</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            margin: 0;
+        }
+        #codeInput {
+            width: 90%;
+            height: 200px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            font-size: 16px;
+        }
+        #output {
+            width: 90%;
+            height: 150px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python IDE</h1>
+    <textarea id="codeInput" placeholder="Write your Python code here..."></textarea><br>
+    <button onclick="runPython()">Run Code</button>
+    <h2>Output</h2>
+    <div id="output"></div>
+
+    <script>
+        async function loadPyodideAndPackages() {
+            window.pyodide = await loadPyodide();
+        }
+
+        async function runPython() {
+            const code = document.getElementById("codeInput").value;
+            const outputDiv = document.getElementById("output");
+            outputDiv.textContent = "Running...";
+            try {
+                const result = await pyodide.runPythonAsync(code);
+                outputDiv.textContent = result || "Code executed successfully with no output.";
+            } catch (error) {
+                outputDiv.textContent = "Error: " + error.message;
+            }
+        }
+
+        loadPyodideAndPackages();
+    </script>
+</body>
+</html>
