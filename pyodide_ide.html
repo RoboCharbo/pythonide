@@ -48,6 +48,20 @@
     <script>
         async function loadPyodideAndPackages() {
             window.pyodide = await loadPyodide();
+            
+            // Override Python's print function to display in output div
+            pyodide.runPython(`
+                import sys
+                from js import console
+
+                class PyConsoleOutput:
+                    def write(self, text):
+                        if text.strip():
+                            console.log(text)
+
+                sys.stdout = PyConsoleOutput()
+                sys.stderr = PyConsoleOutput()
+            `);
         }
 
         async function runPython() {
