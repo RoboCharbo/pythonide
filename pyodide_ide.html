@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Python IDE with Pyodide</title>
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <title>Python IDE with Brython</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,45 +38,43 @@
         }
     </style>
 </head>
-<body>
+<body onload="brython()">
     <h1>Python IDE</h1>
     <textarea id="codeInput" placeholder="Write your Python code here..."></textarea><br>
     <button onclick="runPython()">Run Code</button>
     <h2>Output</h2>
     <div id="output"></div>
 
-    <script>
-        async function loadPyodideAndPackages() {
-            window.pyodide = await loadPyodide();
-            
-            // Override Python's print function to display in output div
-            pyodide.runPython(`
+    <script type="text/python">
+        from browser import document, window
+
+        def runPython(*args):
+            code = document["codeInput"].value
+            output_div = document["output"]
+            output_div.textContent = ""
+            try:
+                # Redirect output to the output div
                 import sys
-                from js import console
+                from io import StringIO
 
-                class PyConsoleOutput:
-                    def write(self, text):
-                        if text.strip():
-                            console.log(text)
+                # Save original stdout and stderr
+                old_stdout = sys.stdout
+                old_stderr = sys.stderr
 
-                sys.stdout = PyConsoleOutput()
-                sys.stderr = PyConsoleOutput()
-            `);
-        }
+                # Redirect stdout and stderr
+                sys.stdout = sys.stderr = StringIO()
 
-        async function runPython() {
-            const code = document.getElementById("codeInput").value;
-            const outputDiv = document.getElementById("output");
-            outputDiv.textContent = "Running...";
-            try {
-                const result = await pyodide.runPythonAsync(code);
-                outputDiv.textContent = result || "Code executed successfully with no output.";
-            } catch (error) {
-                outputDiv.textContent = "Error: " + error.message;
-            }
-        }
+                # Execute code
+                exec(code)
 
-        loadPyodideAndPackages();
+                # Capture output
+                output_div.textContent = sys.stdout.getvalue() or "Code executed successfully with no output."
+            except Exception as e:
+                output_div.textContent = "Error: " + str(e)
+            finally:
+                # Restore stdout and stderr
+                sys.stdout = old_stdout
+                sys.stderr = old_stderr
     </script>
 </body>
 </html>
