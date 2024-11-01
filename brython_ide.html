@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python IDE with Brython</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            margin: 0;
+        }
+        #codeInput {
+            width: 90%;
+            height: 200px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            font-size: 16px;
+        }
+        #output {
+            width: 90%;
+            height: 150px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="brython()">
+    <h1>Python IDE</h1>
+    <textarea id="codeInput" placeholder="Write your Python code here..."></textarea><br>
+    <button onclick="runPython()">Run Code</button>
+    <h2>Output</h2>
+    <div id="output"></div>
+
+    <script type="text/python">
+        from browser import document, window
+
+        def runPython(*args):
+            code = document["codeInput"].value
+            output_div = document["output"]
+            output_div.textContent = ""
+            try:
+                # Redirect output to the output div
+                import sys
+                from io import StringIO
+
+                # Save original stdout and stderr
+                old_stdout = sys.stdout
+                old_stderr = sys.stderr
+
+                # Redirect stdout and stderr
+                sys.stdout = sys.stderr = StringIO()
+
+                # Execute code
+                exec(code)
+
+                # Capture output
+                output_div.textContent = sys.stdout.getvalue() or "Code executed successfully with no output."
+            except Exception as e:
+                output_div.textContent = "Error: " + str(e)
+            finally:
+                # Restore stdout and stderr
+                sys.stdout = old_stdout
+                sys.stderr = old_stderr
+    </script>
+</body>
+</html>
