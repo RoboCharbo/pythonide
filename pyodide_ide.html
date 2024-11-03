@@ -29,7 +29,7 @@
             overflow-y: auto;
             font-family: monospace;
             font-size: 16px;
-            background-color: #f9f9f9;
+            background-color: #F9F9F9;
         }
         button {
             padding: 10px 20px;
@@ -44,38 +44,35 @@
     <button onclick="runPython()">Run Code</button>
     <h2>Output</h2>
     <div id="output"></div>
-
     <script>
         async function loadPyodideAndPackages() {
             window.pyodide = await loadPyodide();
-            
-            // Override Python's print function to display in output div
             pyodide.runPython(`
                 import sys
-                from js import console
-
+                from js import document
                 class PyConsoleOutput:
+                    def __init__(self):
+                        self.output_div = document.getElementById("output")
                     def write(self, text):
                         if text.strip():
-                            console.log(text)
-
+                            self.output_div.innerHTML += text + "<br>"
                 sys.stdout = PyConsoleOutput()
                 sys.stderr = PyConsoleOutput()
             `);
         }
-
         async function runPython() {
             const code = document.getElementById("codeInput").value;
             const outputDiv = document.getElementById("output");
-            outputDiv.textContent = "Running...";
+            outputDiv.innerHTML = "";
             try {
                 const result = await pyodide.runPythonAsync(code);
-                outputDiv.textContent = result || "Code executed successfully with no output.";
+                if (result !== undefined) {
+                    outputDiv.innerHTML += result + "<br>";
+                }
             } catch (error) {
-                outputDiv.textContent = "Error: " + error.message;
+                outputDiv.innerHTML = "Error: " + error.message;
             }
         }
-
         loadPyodideAndPackages();
     </script>
 </body>
