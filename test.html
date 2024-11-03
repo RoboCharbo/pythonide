@@ -1,15 +1,79 @@
-<!doctype html>
-<html>
-  <head>
-      <script src="https://cdn.jsdelivr.net/pyodide/v0.26.3/full/pyodide.js"></script>
-  </head>
-  <body>
-    <script type="text/javascript">
-      async function main(){
-        let pyodide = await loadPyodide();
-        console.log(pyodide.runPython("1 + 2"));
-      }
-      main();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Python IDE with Pyodide</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            margin: 0;
+        }
+        #codeInput {
+            width: 90%;
+            height: 200px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            font-size: 16px;
+        }
+        #output {
+            width: 90%;
+            height: 150px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 16px;
+            background-color: #F9F9F9;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python IDE</h1>
+    <textarea id="codeInput" placeholder="Write your Python code here..."></textarea><br>
+    <button onclick="runPython()">Run Code</button>
+    <h2>Output</h2>
+    <div id="output"></div>
+    <script>
+        async function loadPyodideAndPackages() {
+            window.pyodide = await loadPyodide();
+            pyodide.runPython(`
+                import sys
+                from js import document
+                class PyConsoleOutput:
+                    def __init__(self):
+                        self.output_div = document.getElementById("output")
+                    def write(self, text):
+                        if text.strip():
+                            self.output_div.innerHTML += text + "<br>"
+                sys.stdout = PyConsoleOutput()
+                sys.stderr = PyConsoleOutput()
+            `);
+        }
+        async function runPython() {
+            const code = document.getElementById("codeInput").value;
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "";
+            try {
+                const result = await pyodide.runPythonAsync(code);
+                if (result !== undefined) {
+                    outputDiv.innerHTML += result + "<br>";
+                }
+            } catch (error) {
+                outputDiv.innerHTML = "Error: " + error.message;
+            }
+        }
+        loadPyodideAndPackages();
     </script>
-  </body>
+</body>
 </html>
