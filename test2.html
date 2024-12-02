@@ -1,0 +1,169 @@
+<h3 id="-updated-section-1-program-code-requirements-"><strong>Updated Section 1: Program Code Requirements</strong></h3>
+<hr>
+<h4 id="-a-a-clear-purpose-"><strong>a. A Clear Purpose</strong></h4>
+<ul>
+<li>Your program should have a well-defined <strong>purpose</strong> or <strong>goal</strong> (e.g., solving a problem, automating a task, creating a simulation, or entertaining users with a game).</li>
+<li>Example: <ul>
+<li><strong>Python</strong>: A program that tracks your fitness goals by calculating daily calorie intake and output.</li>
+<li><strong>Snap!</strong>: A game where the user catches falling objects to earn points.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="-b-functionality-"><strong>b. Functionality</strong></h4>
+<ul>
+<li>The program must perform a <strong>clear and observable function</strong> that aligns with its stated purpose.</li>
+<li><p>It should:</p>
+<ul>
+<li>Accept at least one <strong>input</strong> from the user, the program, or a file.</li>
+<li>Produce at least one <strong>output</strong> that demonstrates the program is working as intended.</li>
+<li>Handle errors or invalid inputs gracefully (optional, but encouraged for clarity).</li>
+</ul>
+</li>
+<li><p>Additional Details:</p>
+<ul>
+<li><strong>Input</strong> can come from user prompts, pre-defined data structures (like a list or dictionary), or random generation.</li>
+<li><strong>Output</strong> should clearly correspond to the program&#39;s purpose and demonstrate its functionality.</li>
+</ul>
+</li>
+<li><p>Example:</p>
+<ul>
+<li><strong>Python</strong>: A quiz program that takes user input for answers and outputs the results.<pre><code class="lang-python">question = <span class="hljs-string">"What is the capital of France?"</span>
+answer = input(question)  <span class="hljs-comment"># Input: User types their answer</span>
+<span class="hljs-keyword">if</span> answer.lower() == <span class="hljs-string">"paris"</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Correct!"</span>)  <span class="hljs-comment"># Output: A message indicating success</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Try again!"</span>)  <span class="hljs-comment"># Output: A message indicating failure</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="-c-data-abstraction-"><strong>c. Data Abstraction</strong></h4>
+<ul>
+<li><p>Your program must use a data abstraction, such as a <strong>list</strong> or a <strong>dictionary</strong>, to manage complexity and represent multiple pieces of related data in a structured way.</p>
+</li>
+<li><p>Requirements:</p>
+<ul>
+<li>The data abstraction must store information relevant to your program.</li>
+<li>The program should include operations that iterate over, modify, or retrieve specific elements from the abstraction.</li>
+</ul>
+</li>
+<li><p>Examples:</p>
+<ul>
+<li><p><strong>Python List</strong>:</p>
+<pre><code class="lang-python">scores = [85, 90, 78, 92, 88]
+<span class="hljs-keyword">for</span> <span class="hljs-keyword">score</span> <span class="hljs-keyword">in</span> scores:  # Iterate through each <span class="hljs-keyword">score</span> <span class="hljs-keyword">in</span> the <span class="hljs-keyword">list</span>
+    <span class="hljs-keyword">print</span>(f<span class="hljs-string">"Score: {score}"</span>)  # Output: <span class="hljs-keyword">Display</span> each <span class="hljs-keyword">score</span>
+</code></pre>
+</li>
+<li><p><strong>Python Dictionary</strong>:</p>
+<pre><code class="lang-python">student_scores = {<span class="hljs-string">"Alice"</span>: 90, <span class="hljs-string">"Bob"</span>: 85, <span class="hljs-string">"Charlie"</span>: 78}
+<span class="hljs-keyword">for</span> student, <span class="hljs-keyword">score</span> <span class="hljs-keyword">in</span> student_scores.items():  # Iterate through key-value pairs
+    <span class="hljs-keyword">print</span>(f<span class="hljs-string">"{student} scored {score}"</span>)  # Output: <span class="hljs-keyword">Display</span> each student's <span class="hljs-keyword">score</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Explanation:</p>
+<ul>
+<li><strong>Lists</strong> allow for ordered storage and easy iteration over a collection of items.</li>
+<li><strong>Dictionaries</strong> are useful for associating data with specific keys, enabling more meaningful relationships between elements.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="-d-a-written-procedure-function-"><strong>d. A Written Procedure (Function)</strong></h4>
+<ul>
+<li><p>The program must include a written <strong>procedure</strong> or <strong>function</strong> that:</p>
+<ul>
+<li>Has at least one <strong>parameter</strong> as input.</li>
+<li>Is called at least once in the program.</li>
+<li>Contains <strong>the algorithm</strong> (see Section 1e) as part of its body.</li>
+<li>Accomplishes a task that is meaningful and relevant to the program&#39;s purpose.</li>
+</ul>
+</li>
+<li><p>Examples:</p>
+<ul>
+<li><p><strong>Defining a Function</strong>:</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calculate_average</span><span class="hljs-params">(numbers)</span></span>:  
+    total = <span class="hljs-number">0</span>  <span class="hljs-comment"># Initialize total to zero</span>
+    <span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> <span class="hljs-symbol">numbers:</span>  <span class="hljs-comment"># Iterate through the list of numbers</span>
+        total += number  <span class="hljs-comment"># Add each number to the total</span>
+    <span class="hljs-keyword">return</span> total / len(numbers)  <span class="hljs-comment"># Compute and return the average</span>
+</code></pre>
+<ul>
+<li><strong>Comments Explanation</strong>:<ul>
+<li>The function takes a <strong>list of numbers</strong> as input (parameter).</li>
+<li>It uses a loop (<strong>iteration</strong>) to calculate the total of all numbers.</li>
+<li>The function returns the average (<strong>return statement</strong>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Calling the Function</strong>:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">scores </span>= [<span class="hljs-number">85</span>, <span class="hljs-number">90</span>, <span class="hljs-number">78</span>, <span class="hljs-number">92</span>, <span class="hljs-number">88</span>]  <span class="hljs-comment"># Define a list of scores</span>
+average = calculate_average(<span class="hljs-keyword">scores) </span> <span class="hljs-comment"># Call the function with the list as input</span>
+print(f<span class="hljs-string">"The average score is {average}"</span>)  <span class="hljs-comment"># Output the calculated average</span>
+</code></pre>
+<ul>
+<li><strong>Comments Explanation</strong>:<ul>
+<li>The function is <strong>called</strong> with a specific list as input.</li>
+<li>The return value (average) is stored in the variable <code>average</code>.</li>
+<li>The result is printed to demonstrate functionality.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="-e-an-algorithm-"><strong>e. An Algorithm</strong></h4>
+<ul>
+<li><p>The program must include an <strong>algorithm</strong> that:</p>
+<ul>
+<li>Demonstrates <strong>sequencing</strong>, <strong>selection</strong>, and <strong>iteration</strong>.</li>
+<li>Is included within the body of a procedure or function.</li>
+<li>Performs a meaningful operation relevant to the program&#39;s purpose.</li>
+</ul>
+</li>
+<li><p>Requirements:</p>
+<ul>
+<li><strong>Sequencing</strong>: A specific order of steps that the program follows.</li>
+<li><strong>Selection</strong>: Conditional statements that direct the program’s flow based on certain conditions (<code>if</code>, <code>else</code>, etc.).</li>
+<li><strong>Iteration</strong>: A loop to perform repeated actions (<code>for</code>, <code>while</code>, <code>repeat</code>).</li>
+</ul>
+</li>
+<li><p>Example:</p>
+<pre><code class="lang-python">def find_max(numbers):  
+    max_value = numbers[<span class="hljs-number">0</span>]  <span class="hljs-comment"># Initialize max_value to the first element</span>
+    <span class="hljs-keyword">for</span> <span class="hljs-built_in">number</span> <span class="hljs-keyword">in</span> numbers:  <span class="hljs-comment"># Iterate through the list</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">number</span> &gt; max_value:  <span class="hljs-comment"># Check if the current number is greater</span>
+            max_value = <span class="hljs-built_in">number</span>  <span class="hljs-comment"># Update max_value</span>
+<span class="hljs-built_in">    return</span> max_value  <span class="hljs-comment"># Return the largest number found</span>
+</code></pre>
+</li>
+<li><p><strong>Comments Explanation</strong>:</p>
+<ul>
+<li><strong>Sequencing</strong>: The steps initialize <code>max_value</code>, iterate through <code>numbers</code>, and compare values.</li>
+<li><strong>Selection</strong>: The <code>if</code> statement checks a condition and updates <code>max_value</code> if true.</li>
+<li><strong>Iteration</strong>: The <code>for</code> loop processes each element in the list.</li>
+</ul>
+</li>
+<li><p>Example of Calling the Algorithm:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">scores </span>= [<span class="hljs-number">85</span>, <span class="hljs-number">90</span>, <span class="hljs-number">78</span>, <span class="hljs-number">92</span>, <span class="hljs-number">88</span>]  <span class="hljs-comment"># List of scores</span>
+max_score = find_max(<span class="hljs-keyword">scores) </span> <span class="hljs-comment"># Call the function to find the highest score</span>
+print(f<span class="hljs-string">"The highest score is {max_score}"</span>)  <span class="hljs-comment"># Output the result</span>
+</code></pre>
+</li>
+<li><p><strong>Comments Explanation</strong>:</p>
+<ul>
+<li>The algorithm is executed by <strong>calling the function</strong> with a specific list.</li>
+<li>The output demonstrates the functionality of the algorithm.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>This expanded and refined explanation provides additional details and examples to help you meet the AP CSP Create Performance Task requirements while clearly understanding how each section ties into the program&#39;s goals. Let me know if you need further examples or clarification!</p>
