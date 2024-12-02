@@ -25,11 +25,11 @@
      - **Python**: A quiz program that takes user input for answers and outputs the results.
        ```python
        question = "What is the capital of France?"
-       answer = input(question)  # Input: User types their answer
+       answer = input(question)        # Input: User types their answer
        if answer.lower() == "paris":
-           print("Correct!")  # Output: A message indicating success
+           print("Correct!")           # Output: A message indicating success
        else:
-           print("Try again!")  # Output: A message indicating failure
+           print("Try again!")         # Output: A message indicating failure
        ```
 
 ---
@@ -45,15 +45,15 @@
      - **Python List**:
        ```python
        scores = [85, 90, 78, 92, 88]
-       for score in scores:  # Iterate through each score in the list
-           print(f"Score: {score}")  # Output: Display each score
+       for score in scores:           # Iterate through each score in the list
+           print(f"Score: {score}")   # Output: Display each score
        ```
 
      - **Python Dictionary**:
        ```python
        student_scores = {"Alice": 90, "Bob": 85, "Charlie": 78}
-       for student, score in student_scores.items():  # Iterate through key-value pairs
-           print(f"{student} scored {score}")  # Output: Display each student's score
+       for student, score in student_scores.items():           # Iterate through key-value pairs
+           print(f"{student} scored {score}")                  # Output: Display each student's score
        ```
 
    - Explanation:
@@ -73,9 +73,9 @@
      - **Defining a Function**:
        ```python
        def calculate_average(numbers):  
-           total = 0  # Initialize total to zero
-           for number in numbers:  # Iterate through the list of numbers
-               total += number  # Add each number to the total
+           total = 0                    # Initialize total to zero
+           for number in numbers:       # Iterate through the list of numbers
+               total += number          # Add each number to the total
            return total / len(numbers)  # Compute and return the average
        ```
 
@@ -86,9 +86,9 @@
 
      - **Calling the Function**:
        ```python
-       scores = [85, 90, 78, 92, 88]  # Define a list of scores
-       average = calculate_average(scores)  # Call the function with the list as input
-       print(f"The average score is {average}")  # Output the calculated average
+       scores = [85, 90, 78, 92, 88]              # Define a list of scores
+       average = calculate_average(scores)        # Call the function with the list as input
+       print(f"The average score is {average}")   # Output the calculated average
        ```
 
        - **Comments Explanation**:
@@ -112,11 +112,11 @@
    - Example:
      ```python
      def find_max(numbers):  
-         max_value = numbers[0]  # Initialize max_value to the first element
-         for number in numbers:  # Iterate through the list
-             if number > max_value:  # Check if the current number is greater
-                 max_value = number  # Update max_value
-         return max_value  # Return the largest number found
+         max_value = numbers[0]           # Initialize max_value to the first element
+         for number in numbers:           # Iterate through the list
+             if number > max_value:       # Check if the current number is greater
+                 max_value = number       # Update max_value
+         return max_value                 # Return the largest number found
      ```
 
    - **Comments Explanation**:
@@ -126,9 +126,9 @@
 
    - Example of Calling the Algorithm:
      ```python
-     scores = [85, 90, 78, 92, 88]  # List of scores
-     max_score = find_max(scores)  # Call the function to find the highest score
-     print(f"The highest score is {max_score}")  # Output the result
+     scores = [85, 90, 78, 92, 88]                 # List of scores
+     max_score = find_max(scores)                  # Call the function to find the highest score
+     print(f"The highest score is {max_score}")    # Output the result
      ```
 
    - **Comments Explanation**:
