@@ -1,4 +1,4 @@
-### **Updated Section 1: Program Code Requirements**
+### Create Performance Task: Program Code Requirements**
 
 ---
 
@@ -134,7 +134,3 @@
    - **Comments Explanation**:
      - The algorithm is executed by **calling the function** with a specific list.
      - The output demonstrates the functionality of the algorithm.
-
----
-
-This expanded and refined explanation provides additional details and examples to help you meet the AP CSP Create Performance Task requirements while clearly understanding how each section ties into the program's goals. Let me know if you need further examples or clarification!
